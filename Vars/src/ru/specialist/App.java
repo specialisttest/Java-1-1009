@@ -7,9 +7,18 @@ class Борщ {}
 
 public class App {
 	
-	static int a;
+	public static int a; // class field
+	
+	int field; // object field
+	
+	static boolean B1() {
+		int борщ = 1;
+		System.out.println("B1()");
+		return false;
+	}
 
 	public static void main(String[] args) {
+		{
 		//Борщ борщ = new Борщ();
 		var борщ = new Борщ();
 		
@@ -69,7 +78,76 @@ public class App {
 		//k = k*2;
 		
 		
-
+		boolean a1 = true;
+		boolean b1 = false;
+		
+		// ЛОГИЧЕСКОЕ И (AND)
+		boolean c1 = a1 && b1;
+		
+		// ЛОГИЧЕСКОЕ ИЛИ (OR)
+		c1 = a1 || b1;
+		
+		// ЛОГИЧЕСКОЕ НЕ (NOT)
+		c1 = !a1;
+		
+		c1 = !(a1 && b1); // !a1 || !b1
+		
+		//c1 = a1 || !B1();
+		//c1 = a1 | !B1();
+		
+		System.out.println(c1);
+		
+		int k1 = 5;
+		c1 = (k1 / 2) == (k1 - 3);
+		// ==
+		// !=
+		// >
+		// <
+		// >=
+		// <=
+		// [0, 100]
+		c1 = (k1 >= 0) && (k1 <= 100);
+		
+		
+		System.out.println(c1);
+		}
+		// scope, lifetime
+		{
+			int p = 10;
+			System.out.println(p);
+		}
+		{
+			String p = "abc";
+			System.out.println(p);
+		}
+		for(int i=1; i <=10; i++)
+			System.out.println(i);
+		
+		//System.out.println(i); // compile error
+		
+		//System.out.println(p); // compile error
+		
+		//System.out.println(борщ);
+		
+		// stack:  local vars, method parameters
+		// heap:   object
+		// static: static field
+		{
+			int a = 10;
+			//a = a * 2;
+			//int b = a *= 2;
+			//int b = (a = a*2);
+			//a--;
+			//--a;
+			
+			//int b = a++ + ++a;
+			//      10  +  12
+			int b = ++a + a++; //bad
+			//      11  + 11
+			
+			System.out.printf("a = %d\nb = %d\n", a, b);
+		}
+		
 	}
 
 }
