@@ -39,7 +39,7 @@ public class App {
 		}
 		
 		int[] m1 = {10};
-		int[] m2 = m1.clone();
+		int[] m2 = m1.clone(); // m2 = m1;
 		System.out.println(m1[0]);
 		System.out.println(m2[0]);
 
