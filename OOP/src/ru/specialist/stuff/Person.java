@@ -1,13 +1,28 @@
 package ru.specialist.stuff;
 
-public class Person {
+import java.io.Serializable;
+import java.time.LocalDate;
+
+public class Person implements Serializable{
 	
 	public static final int DEFAULT_AGE = 21;
 	
 	// object field
 	public String name = "Незнакомец";
-	public int age;
 	
+	//private int age;
+	private int birthYear; 
+	public int getAge() {
+		return LocalDate.now().getYear() - birthYear;
+	}
+
+	public void setAge(int age) {
+		if (age >=0 && age <=120)
+			this.birthYear = LocalDate.now().getYear() - age;
+		else
+			throw new IllegalArgumentException("age out of [0, 120]");
+	}
+
 	// class field
 	public static int counter = 0;
 	
@@ -33,13 +48,14 @@ public class Person {
 	}
 	public Person(String name, int age) {
 		this.name = name;
-		this.age = age;
+		//this.age = age;
+		setAge(age);
 		//Person.counter++;
 		counter++;
 	}
 	
 	public void show() {
-		System.out.printf("%s - %d\n", name, this.age);
+		System.out.printf("%s - %d\n", name, this.getAge());
 	}
 
 }

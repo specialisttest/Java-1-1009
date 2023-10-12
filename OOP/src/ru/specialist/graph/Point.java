@@ -1,6 +1,10 @@
 package ru.specialist.graph;
 
-public class Point extends Shape{
+/*class Point3D extends Point {
+	int z;
+}*/
+
+public /*final*/ class Point extends Shape {
 	
 	public int x;
 	public int y;
@@ -8,11 +12,11 @@ public class Point extends Shape{
 	// bad
 	//public String color;
 	
-	public Point() {
+	Point() {
 		this(0,0, DEFAULT_COLOR);
 	}
 	
-	public Point(int x, int y, String color) {
+	Point(int x, int y, String color) {
 		super(color);
 		
 		this.x = x;
@@ -26,6 +30,12 @@ public class Point extends Shape{
 		//super.draw();
 		System.out.printf("%s (%d, %d) : %s\n",
 				this.getClass().getSimpleName(),  this.x, this.y, this.color);
+		//System.out.println(this);
+	}
+	
+	@Override
+	public String toString() {
+		return String.format("Point (%d, %d) : %s", this.x, this.y, this.color);
 	}
 	
 	// bad
