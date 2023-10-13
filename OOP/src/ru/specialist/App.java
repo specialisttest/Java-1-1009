@@ -1,5 +1,12 @@
 package ru.specialist;
 
+import static java.lang.System.out;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
+
 import ru.specialist.graph.*;
 import ru.specialist.stuff.Person;
 
@@ -55,31 +62,22 @@ import ru.specialist.stuff.Person;
  * 
  */
 
+/*
+class PersonComparatorByName implements Comparator<Person> {
+
+	@Override
+	public int compare(Person p1, Person p2) {
+		// if (p1 > p2) return 1;
+		// if (p1 < p2) return -1;
+		// if (p1 == p2) return 0;
+		return p1.getName().compareTo(p2.getName());
+	}
+}*/
+
 public class App {
 
 	public static void main(String[] args) {
-		{
-			System.out.println("1");
-			
-			Person.showTotal();
-			
-			Person p1 = new Person("Сергей", 46);
-			//p1.name = "Сергей";
-			//p1.age = 46;
-			
-			Person p2 = new Person("Елена");
-			//p2.name = "Елена";
-			//p2.age  = 25;
-			
-			Person px = new Person();
-					
-			
-			p1.show(); // this = p1
-			p2.show(); // this = p2
-			px.show();
-			
-			Person.showTotal();
-		}
+
 		{
 			//Point p1 = new Point(10, 20, "green");
 			Point p1 = ShapeFactory.instance.createPoint(10, 20, "green");
@@ -96,7 +94,7 @@ public class App {
 			if (o instanceof Point) {
 				Point p2 = (Point)o;
 			}
-			System.out.println(o.toString());
+			out.println(o.toString());
 			
 			//System.out.println(p1.toString());
 			//System.out.println(p1);
@@ -162,7 +160,57 @@ public class App {
 			
 						
 		}
+		{
+			System.out.println("1");
+			
+			Person.showTotal();
+			
+			Person p1 = new Person("Сергей", 46);
+			//p1.name = "Сергей";
+			//p1.age = 46;
+			
+			Person p2 = new Person("Елена");
+			//p2.name = "Елена";
+			//p2.age  = 25;
+			
+			Person px = new Person();
+					
+			List<Person> people = new ArrayList<Person>();
+			people.add(p1);
+			people.add(p2);
+			people.add(px);
+			
+			/*class PersonComparatorByName implements Comparator<Person> {
 
+				@Override
+				public int compare(Person p1, Person p2) {
+					return p1.getName().compareTo(p2.getName());
+				}
+			}
+			Comparator<Person> cmp = new PersonComparatorByName();*/
+			
+			
+			/*Collections.sort(people, new Comparator<Person>() {
+				public int compare(Person p1, Person p2) {
+					return p1.getName().compareTo(p2.getName());
+				}
+			});*/
+			
+			// lambda-expression
+			// since java 8
+			//Collections.sort(people, (x1, x2) -> x1.getName().compareTo(x2.getName()) );
+			Collections.sort(people, Person.byName);
+			Collections.sort(people, Person.byAge);
+			
+			for(var p : people)
+				p.show();
+			
+			//p1.show(); // this = p1
+			//p2.show(); // this = p2
+			//px.show();
+			
+			Person.showTotal();
+		}
 	}
 
 }

@@ -2,14 +2,32 @@ package ru.specialist.stuff;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.Comparator;
 
-public class Person implements Serializable{
+public class Person implements Serializable, Comparable<Person>
+{
 	
+	public static final Comparator<Person> byName = 
+			(x1, x2) -> x1.getName().compareTo(x2.getName());
+	
+	public static final Comparator<Person> byAge = 
+			(x1, x2) -> x1.getAge() -x2.getAge();
+			
 	public static final int DEFAULT_AGE = 21;
 	
 	// object field
-	public String name = "Незнакомец";
+	private String name = "Незнакомец";
 	
+	
+	
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
 	//private int age;
 	private int birthYear; 
 	public int getAge() {
@@ -56,6 +74,17 @@ public class Person implements Serializable{
 	
 	public void show() {
 		System.out.printf("%s - %d\n", name, this.getAge());
+	}
+
+	@Override
+	public int compareTo(Person p) {
+		// if (this > p) return 1;
+		// if (this < p) return -1;
+		// if (this == p) return 0;
+		//return this.getName().compareTo(p.getName());
+		//return  this.getAge() - p.getAge();
+		int k = p.getAge() - this.getAge();
+		return (k == 0) ? this.getName().compareTo(p.getName()) : k;
 	}
 
 }

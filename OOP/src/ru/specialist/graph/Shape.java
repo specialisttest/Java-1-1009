@@ -52,5 +52,9 @@ public abstract class Shape {
 			}
 		}
 	}
+	
+	public static void clearScene() {
+		scene.clear();
+	}
 
 }

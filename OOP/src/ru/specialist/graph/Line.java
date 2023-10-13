@@ -1,5 +1,6 @@
 package ru.specialist.graph;
 
+@MyAnnotation(name="abc")
 public class Line extends Shape implements Scaleable{
 	public int x1,y1,x2,y2;
 	
